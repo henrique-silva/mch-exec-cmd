@@ -1,0 +1,10 @@
+# General files
+*.orig
+*.swap
+*~
+*.bak
+*.backup
+*.swp
+
+#Firmware binaries
+firmwares/*.bin
