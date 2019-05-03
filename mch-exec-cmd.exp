@@ -1,0 +1,44 @@
+#!/usr/bin/expect -f
+
+# Our SSH takes a while to connect
+set timeout 120
+
+#Expression to match the NAT MCH serial prompt
+set prompt "nat> *"
+
+set send_slow {1 .1}
+proc send {ignore arg} {
+    sleep .1
+    exp_send -s -- $arg
+}
+
+if { $argc < 3 } {
+    puts "\[ERROR\] Insufficient arguments provided!"
+    puts "Usage: ./mch-exec-cmd.exp <MCH IP> <MCH Password> <Expect script> \[script args\]"
+    exit 1
+}
+
+set mchipaddr [lindex $argv 0]
+set mchpass [lindex $argv 1]
+set script [lindex $argv 2]
+set script_args [lrange $argv 3 end]
+
+spawn ssh -o StrictHostKeyChecking=no root@$mchipaddr
+expect "*?assword"
+send -- "$mchpass\r"
+
+#Send a bogus command to clear any garbage that may have been sent before or during connection
+send -- "\r"
+expect $prompt
+
+#Execute user expect script
+source $script
+
+#Clear buffer for next run/user
+send -- "\r"
+expect $prompt
+
+#Close serial connection
+send -- "\r~."
+
+puts "Commands successfully executed!"

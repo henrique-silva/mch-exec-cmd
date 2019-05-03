@@ -1,0 +1,58 @@
+# Print fru info
+send -- "show_fru\r"
+expect -re $prompt
+
+#Shutdown all AMCs
+send -- "shutdown 5\r"
+expect -re $prompt
+send -- "shutdown 6\r"
+expect -re $prompt
+send -- "shutdown 7\r"
+expect -re $prompt
+send -- "shutdown 8\r"
+expect -re $prompt
+send -- "shutdown 9\r"
+expect -re $prompt
+send -- "shutdown 10\r"
+expect -re $prompt
+send -- "shutdown 11\r"
+expect -re $prompt
+send -- "shutdown 12\r"
+expect -re $prompt
+send -- "shutdown 13\r"
+expect -re $prompt
+send -- "shutdown 14\r"
+expect -re $prompt
+send -- "shutdown 15\r"
+expect -re $prompt
+send -- "shutdown 16\r"
+expect -re $prompt
+
+#Wait some time so all boards are powered-off
+wait 15
+
+#Start all AMCs
+send -- "fru_start 5\r"
+expect -re $prompt
+send -- "fru_start 6\r"
+expect -re $prompt
+send -- "fru_start 7\r"
+expect -re $prompt
+send -- "fru_start 8\r"
+expect -re $prompt
+send -- "fru_start 9\r"
+expect -re $prompt
+send -- "fru_start 10\r"
+expect -re $prompt
+send -- "fru_start 11\r"
+expect -re $prompt
+send -- "fru_start 12\r"
+expect -re $prompt
+send -- "fru_start 13\r"
+expect -re $prompt
+send -- "fru_start 14\r"
+expect -re $prompt
+send -- "fru_start 15\r"
+expect -re $prompt
+send -- "fru_start 16\r"
+expect -re $prompt

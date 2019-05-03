@@ -1,0 +1,5 @@
+# Print fru info
+send -- "show_sensorinfo 40\r"
+expect $prompt
+send -- "show_sensorinfo 41\r"
+expect $prompt

@@ -1,0 +1,13 @@
+set ftpaddr [lindex $script_args 0]
+
+# Update MCH Firmware version
+send -- "update_firmware\r"
+expect "firmware> *"
+send -- "$ftpaddr:mch_fw.bin\r"
+expect "TFTP:*"
+expect "*successful*"
+expect $prompt
+
+#Reboot MCH
+send -- "shutdown system\r"
+expect "*"
