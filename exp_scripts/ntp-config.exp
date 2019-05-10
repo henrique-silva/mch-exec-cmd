@@ -1,0 +1,29 @@
+set ntp_server [lindex $script_args 0]
+
+send -- "mchcfg\r"
+expect "Enter configuration mode (*):"
+send -- "10\r"
+expect "Enable Time client (y/n) (*):"
+send -- "y\r"
+expect "Use SNTP (y) or Time Protocol (n) (*):"
+send -- "y\r"
+expect "Enter Time server IP (dot notation): *"
+if {$ntp_server eq ""} {
+    #NTP server addr not provided, just use the one already recorded on MCH
+    send -- "\r"
+} else {
+    #Update with new NTP server address (\010 is a backspace)
+    send -- "\010\010\010\010\010\010\010\010\010\010\010\010\010\010\010$ntp_server\r"
+}
+expect "Enter 'Check for Time' delay (dec, minutes) (*):"
+send -- "10\r"
+expect "Enter 'Check for Time' delay (dec, hours) (*):"
+send -- "0\r"
+expect "Enter local time offset (dec, hours) (*):"
+send -- "-3\r"
+expect "Enter configuration mode (*):"
+send -- "q\r"
+expect $prompt
+
+#Optional reboot for immediate time update
+#source "exp_scripts/reboot-mch.exp"
