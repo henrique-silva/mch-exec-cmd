@@ -1,0 +1,5 @@
+#Shutdown FRU
+set fru [lindex $script_args 0]
+
+send -- "shutdown $fru\r"
+expect $prompt

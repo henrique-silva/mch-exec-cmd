@@ -1,3 +1,0 @@
-#Start AMC1 (Timing)
-send -- "fru_start 5\r"
-expect $prompt

@@ -1,0 +1,5 @@
+#Start FRU
+set fru [lindex $script_args 0]
+
+send -- "fru_start $fru\r"
+expect $prompt
