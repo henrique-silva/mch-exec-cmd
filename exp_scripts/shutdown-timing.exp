@@ -1,0 +1,3 @@
+#Shutdown AMC1 (Timing)
+send -- "shutdown 5\r"
+expect $prompt
