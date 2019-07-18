@@ -1,0 +1,16 @@
+set ftpaddr [lindex $script_args 0]
+set cfg_file [lindex $script_args 1]
+
+#Update clock configuration
+send -- "upload_cfg\r"
+expect ":>*"
+send -- "$ftpaddr:$cfg_file\r"
+expect "Set configuration from file?*"
+send -- "y\r"
+expect "Save configuration to FLASH memory?*"
+send -- "y\r"
+expect $prompt
+
+#Reboot MCH
+send -- "shutdown system\r"
+expect "*"
