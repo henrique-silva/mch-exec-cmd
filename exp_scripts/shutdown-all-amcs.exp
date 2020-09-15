@@ -1,0 +1,31 @@
+set timeout 1
+
+# Print fru info
+send -- "show_fru\r"
+expect -re $prompt
+
+#Shutdown all AMCs
+send -- "shutdown 5\r"
+expect -re $prompt
+send -- "shutdown 6\r"
+expect -re $prompt
+send -- "shutdown 7\r"
+expect -re $prompt
+send -- "shutdown 8\r"
+expect -re $prompt
+send -- "shutdown 9\r"
+expect -re $prompt
+send -- "shutdown 10\r"
+expect -re $prompt
+send -- "shutdown 11\r"
+expect -re $prompt
+send -- "shutdown 12\r"
+expect -re $prompt
+send -- "shutdown 13\r"
+expect -re $prompt
+send -- "shutdown 14\r"
+expect -re $prompt
+send -- "shutdown 15\r"
+expect -re $prompt
+send -- "shutdown 16\r"
+expect -re $prompt

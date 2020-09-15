@@ -1,0 +1,11 @@
+set timeout 1
+
+# Print fru info
+send -- "show_fru\r"
+expect -re $prompt
+
+send -- "show_fruinfo\r"
+expect -re $prompt
+
+# Until until all messages have been printed out
+wait 10
